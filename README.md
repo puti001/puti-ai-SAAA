@@ -1,11 +1,11 @@
-# Puti-AI ESSA｜國小學力檢測備考助手
+# Puti-AI SAAA｜國小學力檢測備考助手
 
 這是國語、數學及未來其他科目的唯一主要維護儲存庫。
 
-- 科目首頁：https://puti001.github.io/puti-ai-ESSA/
-- 國語 ESSA-CHI：https://puti001.github.io/puti-ai-ESSA/CHI/
-- 數學 ESSA-MATH：https://puti001.github.io/puti-ai-ESSA/MATH/
-- 英語 ESSA-ENG：https://puti001.github.io/puti-ai-ESSA/ENG/
+- 科目首頁：https://puti001.github.io/puti-ai-SAAA/
+- 國語 SAAA-CHI：https://puti001.github.io/puti-ai-SAAA/CHI/
+- 數學 SAAA-MATH：https://puti001.github.io/puti-ai-SAAA/MATH/
+- 英語 SAAA-ENG：https://puti001.github.io/puti-ai-SAAA/ENG/
 
 ## 檔案安排
 
@@ -20,7 +20,7 @@
 
 ## 舊網址相容
 
-原本的 `puti-ai-ESSA-CHI`、`puti-ai-ESSA-MATH` 儲存庫只保留入口轉址，不再分別維護網站功能。後續功能更新全部在這個主 repo 完成。
+原本的分科儲存庫只保留入口轉址，不再分別維護網站功能。後續功能更新全部在這個主 repo 完成。
 
 屏東縣後庄國小黃朝榮老師作品，免費分享，歡迎擴散推廣，嚴禁商用與任何侵權、不尊重著作權的行為
 

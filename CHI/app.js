@@ -69,7 +69,7 @@ let activeTask = taskDefinitions[0];
 
 function renderTasks() {
   els.taskList.innerHTML = taskDefinitions.filter((task) => task.id !== "diagnose").map((task) => `
-    <button class="task-button ${task.id === activeTask.id ? "active" : ""}" data-task="${task.id}" type="button" role="listitem">
+    <button class="task-button ${task.id === activeTask.id ? "active" : ""}" data-task="${task.id}" type="button" aria-pressed="${task.id === activeTask.id}">
       <span class="task-icon">${task.icon}</span><span>${task.title}</span>
     </button>
   `).join("");
@@ -100,7 +100,7 @@ function buildFocusInstruction() {
   if (!selected) {
     return "【本次聚焦能力向度】請先在右側選擇一項能力向度，再設計五題小考。不可自行改選其他向度，也不要混合十個向度。";
   }
-  return `【本次聚焦能力向度】本次指定只練習「${selected}」。請讓五題都以這一項作為主要評量向度；其他能力只能作為理解題意的輔助，不得轉移本次小考的訓練重點。`;
+    return `【本次聚焦能力向度】本次指定只練習「${selected}」。老師指定的能力向度是最高優先；紅黃綠分析只作為選擇建議。請讓五題都以這一項作為主要評量向度；其他能力只能作為理解題意的輔助，不得轉移本次小考的訓練重點。`;
 }
 
 function renderPrompt() {
@@ -108,7 +108,7 @@ function renderPrompt() {
   els.category.textContent = activeTask.category;
   els.description.textContent = activeTask.description;
   const focusInstruction = buildFocusInstruction();
-  const prompt = activeTask.build(getSettings()).replace(/輸出對象：教師與學生共同使用[，。]?/g, "").replaceAll("沖刺", "衝刺");
+  const prompt = activeTask.build(getSettings()).replace(/輸出對象：教師與學生共同使用[，。]?/g, "").replaceAll("沖刺", "衝刺").replace("依年級安排的語文知識與閱讀理解比例", "依年級安排的語文知識與閱讀理解比例；若官方架構沒有明確比例，請標示「教師建議比例」，不得稱為官方比例");
   els.output.textContent = [focusInstruction, prompt].filter(Boolean).join("\n\n");
 }
 
@@ -144,3 +144,4 @@ async function copyPrompt() {
 els.copy.addEventListener("click", copyPrompt);
 renderTasks();
 renderPrompt();
+

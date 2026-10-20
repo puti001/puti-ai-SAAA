@@ -193,7 +193,7 @@ let activeTask = taskDefinitions[0];
 
 function renderTasks() {
   els.taskList.innerHTML = taskDefinitions.map((task) => `
-    <button class="task-button ${task.id === activeTask.id ? "active" : ""}" data-task="${task.id}" type="button" role="listitem">
+    <button class="task-button ${task.id === activeTask.id ? "active" : ""}" data-task="${task.id}" type="button" aria-pressed="${task.id === activeTask.id}">
       <span class="task-icon">${task.icon}</span><span>${task.title}</span>
     </button>
   `).join("");
@@ -223,7 +223,7 @@ function buildFocusInstruction() {
   if (!selected) {
     return "【本次聚焦能力向度】請先在右側選擇一項數學能力向度，再設計五題小考。不可自行改選其他向度，也不要混合所有向度。";
   }
-  return `【本次聚焦能力向度】本次指定只練習「${selected}」。請讓五題都以這一項作為主要評量向度；其他能力只能作為理解題意或完成計算的輔助，不得轉移本次小考的訓練重點。`;
+  return `【本次聚焦能力向度】本次指定只練習「${selected}」。老師指定的能力向度是最高優先；紅黃綠分析只作為選擇建議。請讓五題都以這一項作為主要評量向度；其他能力只能作為理解題意或完成計算的輔助，不得轉移本次小考的訓練重點。若需要圖形或表格，請提供可直接貼到講義的文字版、表格版或簡易示意格式，並標示哪些部分需要教師補圖。`;
 }
 
 function renderPrompt() {
@@ -231,7 +231,8 @@ function renderPrompt() {
   els.category.textContent = activeTask.category;
   els.description.textContent = activeTask.description;
   const prompt = activeTask.build(getSettings()).replaceAll("沖刺", "衝刺");
-  els.output.textContent = [buildFocusInstruction(), prompt].filter(Boolean).join("\n\n");
+  const outputRules = activeTask.id === "mock" ? "【圖表排版提醒】若題目需要圖形、表格或幾何圖示，請提供可直接貼到講義的文字版、表格版或簡易示意格式，並標示哪些部分需要教師補圖。" : "";
+  els.output.textContent = [buildFocusInstruction(), prompt, outputRules].filter(Boolean).join("\n\n");
 }
 
 function flashToast(message) {
@@ -267,3 +268,4 @@ els.focusDimension.innerHTML = `<option value="" selected disabled>請選擇一�
 els.copy.addEventListener("click", copyPrompt);
 renderTasks();
 renderPrompt();
+

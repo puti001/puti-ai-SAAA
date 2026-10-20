@@ -15,7 +15,7 @@
     <div class="ambient ambient-two"></div>
 
     <header class="site-header shell">
-      <a class="brand" href="#top" aria-label="Puti-AI 首頁">
+      <a class="brand" href="../" aria-label="Puti-AI ESSA 科目首頁">
         <span class="brand-mark"><span></span><span></span><span></span></span>
         <span>
           <strong>Puti-AI ESSA-ENG</strong>
@@ -62,13 +62,13 @@
             <p class="eyebrow">01 / PROMPT WORKBENCH</p>
             <h2>你現在要請 NotebookLM 做什麼？</h2>
           </div>
-          <span class="step-counter">STEP <b>1</b> / 3</span>
+          <span class="step-counter">提示詞工作區</span>
         </div>
 
         <div class="workbench-grid">
           <aside class="control-panel">
             <div class="panel-label">任務類型</div>
-            <div id="taskList" class="task-list" role="list"></div>
+            <div id="taskList" class="task-list" role="group" aria-label="任務類型"></div>
 
             <div class="panel-divider"></div>
             <div class="panel-label">分析條件</div>
@@ -99,10 +99,10 @@
 
           <section class="prompt-panel">
             <div id="focusDimensionField" class="focus-dimension-field" hidden>
-              <div class="focus-dimension-head"><span>五題小考設定</span><b>只聚焦一項能力</b></div>
+              <div class="focus-dimension-head"><span>五題小考必填設定</span><b>只聚焦一項能力</b></div>
               <label class="field-label" for="focusDimension">本次聚焦能力向度</label>
               <select id="focusDimension" class="select-control" required></select>
-              <small class="field-help">請先選擇一項能力向度；四年級與五、六年級的官方向度會依年級顯示。</small>
+              <small class="field-help">五題小考必須先選擇一項能力向度，才能複製提示詞；紅黃綠分析只作為選擇建議。官方向度會依年級顯示。</small>
             </div>
             <div class="prompt-panel-head">
               <div>
@@ -113,7 +113,7 @@
             </div>
             <p id="promptDescription" class="prompt-description"></p>
             <div class="prompt-box-wrap">
-              <div class="prompt-toolbar"><span><i></i><i></i><i></i></span><small>複製後貼到 NotebookLM 題庫</small><a class="notebook-toolbar-link" href="https://notebook.google.com/notebook/304ac30f-6c9b-41d8-9deb-2c42569678f5" target="_blank" rel="noopener">開啟 NotebookLM 題庫 ↗</a><button id="copyButton" class="copy-button" type="button">複製提示詞 <span>⌘ C</span></button></div>
+              <div class="prompt-toolbar"><span><i></i><i></i><i></i></span><small>複製後貼到 NotebookLM 題庫</small><a class="notebook-toolbar-link" href="https://notebook.google.com/notebook/304ac30f-6c9b-41d8-9deb-2c42569678f5" target="_blank" rel="noopener">開啟 NotebookLM 題庫 ↗</a><button id="copyButton" class="copy-button" type="button">複製提示詞 <span>Ctrl+C</span></button></div>
               <pre id="promptOutput" class="prompt-output" tabindex="0"></pre>
             </div>
             <div id="copyToast" class="copy-toast" role="status" aria-live="polite">已複製提示詞，請貼到 NotebookLM 題庫。</div>

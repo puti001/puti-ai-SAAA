@@ -38,7 +38,7 @@ const focusDimensionsByGrade = {
   ]
 };
 
-const sourceRule = `請只根據本 NotebookLM 中已提供的「115 年英語文評量架構」、111 至 115 年國小英語科題本、答案、英聽音檔與試題疑義資料回答。英語正式檢測的共同基準為 35 題、四選一、作答 40 分鐘；聽力 15 題、閱讀 20 題。若不同年級或不同年度有差異，請以來源中的明確資料為準並標示差異，不要自行補寫官方規定。`;
+const sourceRule = `請只根據本 NotebookLM 中已提供的「115 年英語文評量架構」、歷年國小英語科題本、答案、英聽音檔與試題疑義資料回答。右側「資料範圍」選項是本次分析的唯一年度範圍，不要把未選取的年度當成本次分析範圍。英語正式檢測的共同基準為 35 題、四選一、作答 40 分鐘；聽力 15 題、閱讀 20 題。若不同年級或不同年度有差異，請以來源中的明確資料為準並標示差異，不要自行補寫官方規定。`;
 
 const taskDefinitions = [
   {
@@ -238,7 +238,7 @@ function updateFocusDimensions() {
 
 function renderTasks() {
   els.taskList.innerHTML = taskDefinitions.map((task) => `
-    <button class="task-button ${task.id === activeTask.id ? "active" : ""}" data-task="${task.id}" type="button" role="listitem">
+    <button class="task-button ${task.id === activeTask.id ? "active" : ""}" data-task="${task.id}" type="button" aria-pressed="${task.id === activeTask.id}">
       <span class="task-icon">${task.icon}</span><span>${task.title}</span>
     </button>
   `).join("");
@@ -268,7 +268,7 @@ function buildFocusInstruction() {
   if (!selected) {
     return "【本次聚焦能力向度】請先在右側選擇一項英語官方評量向度，再設計五題小考。不可自行改選其他向度，也不要混合所有向度。";
   }
-  return `【本次聚焦能力向度】本次指定只練習「${selected}」。請讓五題都以這一項作為主要評量向度；其他能力只能作為理解題意、完成回應或閱讀情境的輔助，不得轉移本次小考的訓練重點。`;
+  return `【本次聚焦能力向度】本次指定只練習「${selected}」。老師指定的能力向度是最高優先；紅黃綠分析只作為選擇建議。請讓五題都以這一項作為主要評量向度；其他能力只能作為理解題意、完成回應或閱讀情境的輔助，不得轉移本次小考的訓練重點。若需要圖表或圖片，請提供可直接貼到講義的文字版、表格版或清楚的圖片描述。`;
 }
 
 function renderPrompt() {
@@ -276,8 +276,9 @@ function renderPrompt() {
   els.title.textContent = activeTask.title;
   els.category.textContent = activeTask.category;
   els.description.textContent = activeTask.description;
-  const prompt = activeTask.build(getSettings()).replaceAll("沖刺", "衝刺");
-  els.output.textContent = [buildFocusInstruction(), prompt].filter(Boolean).join("\n\n");
+  const prompt = activeTask.build(getSettings()).replaceAll("沖刺", "衝刺").replace("若本次向度屬聽力，請在學生版提供「教師朗讀稿／播放內容」與題目所需的選項，但不得在學生版標示答案；若無法產生音檔，請明確標示可由教師朗讀或另行錄音。", "若本次向度屬聽力，學生版只放題目與選項；教師朗讀稿／播放內容放在下方教師版，不要混入學生版；若無法產生音檔，請明確標示可由教師朗讀或另行錄音。").replace("必要的聽力稿或閱讀資料", "必要的閱讀資料");
+  const outputRules = activeTask.id === "similar" ? "【補充優先規則】若本次向度屬聽力，學生版上半部只放作答說明、題目與選項；教師朗讀稿或播放內容、答案與解析集中放在下半部教師版。工具只提供朗讀稿，不會自動產生音檔。" : "";
+  els.output.textContent = [buildFocusInstruction(), prompt, outputRules].filter(Boolean).join("\n\n");
 }
 
 function flashToast(message) {

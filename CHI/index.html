@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Puti-AI 國語學力檢測提示詞助手：讓老師快速複製分析、命題、模擬考與補救教學提示詞。" />
     <title>Puti-AI ESSA-CHI｜國小國語學力檢測備考助手</title>
+    <link rel="canonical" href="https://puti001.github.io/puti-ai-ESSA/CHI/" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='10' y='40' width='18' height='50' rx='4' fill='%230f766e'/%3E%3Crect x='41' y='22' width='18' height='68' rx='4' fill='%23ef6a5b'/%3E%3Crect x='72' y='8' width='18' height='82' rx='4' fill='%231b3442'/%3E%3C/svg%3E" />
+    <meta property="og:title" content="Puti-AI ESSA-CHI｜國小國語學力檢測備考助手" />
+    <meta property="og:description" content="以國語題庫與評量架構為證據，協助教師進行紅黃綠分析、課堂小考、模擬考與複習規劃。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://puti001.github.io/puti-ai-ESSA/CHI/" />
+    <meta name="twitter:card" content="summary" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -104,16 +111,20 @@
               <label class="field-label" for="focusDimension">本次聚焦能力向度</label>
               <select id="focusDimension" class="select-control" required>
                 <option value="" selected disabled>請選擇一項能力向度</option>
-                <option value="形音知識">形音知識</option>
-                <option value="字詞知識">字詞知識</option>
-                <option value="語法知識">語法知識</option>
-                <option value="修辭知識">修辭知識</option>
-                <option value="章法知識">章法知識</option>
-                <option value="文體知識">文體知識</option>
-                <option value="字詞理解">字詞理解</option>
-                <option value="句子理解">句子理解</option>
-                <option value="段落理解">段落理解</option>
-                <option value="篇章理解">篇章理解</option>
+                <optgroup label="語文基礎知識">
+                  <option value="形音知識">形音知識</option>
+                  <option value="字詞知識">字詞知識</option>
+                  <option value="語法知識">語法知識</option>
+                  <option value="修辭知識">修辭知識</option>
+                  <option value="章法知識">章法知識</option>
+                  <option value="文體知識">文體知識</option>
+                </optgroup>
+                <optgroup label="閱讀理解層次">
+                  <option value="字詞理解">字詞理解</option>
+                  <option value="句子理解">句子理解</option>
+                  <option value="段落理解">段落理解</option>
+                  <option value="篇章理解">篇章理解</option>
+                </optgroup>
               </select>
               <small class="field-help">五題小考必須先選擇一項能力向度，才能複製提示詞；紅黃綠分析只作為選擇建議。</small>
             </div>
